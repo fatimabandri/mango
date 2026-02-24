@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center py-12 px-4">
+
+    <div class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10">
+
+        <!-- Heading -->
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800">
+                🥭 Place Your Mango Order
+            </h2>
+            <p class="text-gray-500 mt-2">
+                Fresh, Naturally Ripened Ratnagiri Mangoes
+            </p>
+        </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Full Name
+                </label>
+                {{ form.customer_name }}
+                {% if form.customer_name.errors %}
+                <p class="text-red-500 text-sm mt-1">
+                    {{ form.customer_name.errors.0 }}
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Product -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Select Mango
+                </label>
+                {{ form.product }}
+                {% if form.product.errors %}
+                <p class="text-red-500 text-sm mt-1">
+                    {{ form.product.errors.0 }}
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Quantity -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Quantity (Dozens)
+                </label>
+                {{ form.quantity }}
+                {% if form.quantity.errors %}
+                <p class="text-red-500 text-sm mt-1">
+                    {{ form.quantity.errors.0 }}
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Address -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Delivery Address
+                </label>
+                {{ form.address }}
+                {% if form.address.errors %}
+                <p class="text-red-500 text-sm mt-1">
+                    {{ form.address.errors.0 }}
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Button -->
+            <div class="pt-4">
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-semibold py-3 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                    Confirm Order
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
